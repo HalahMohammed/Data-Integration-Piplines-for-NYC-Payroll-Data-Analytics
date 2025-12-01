@@ -1,37 +1,37 @@
-
-USE dbo;
-GO
-
--- 1. Create file format
+use dbo;
 IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat') 
-CREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] 
-WITH ( 
-    FORMAT_TYPE = DELIMITEDTEXT,
-    FORMAT_OPTIONS (
-        FIELD_TERMINATOR = ',',
-        USE_TYPE_DEFAULT = FALSE
-    )
-)
+	CREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] 
+	WITH ( FORMAT_TYPE = DELIMITEDTEXT ,
+	       FORMAT_OPTIONS (
+			 FIELD_TERMINATOR = ',',
+			 USE_TYPE_DEFAULT = FALSE
+			))
 GO
 
--- 2. Create data source (REPLACE WITH YOUR VALUES)
-IF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'payroll_source')
-CREATE EXTERNAL DATA SOURCE payroll_source
-WITH (
-    LOCATION = 'abfss://filedatalakesynapse@datalakesynapse100.dfs.core.windows.net' 
-)
+IF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'synapsefilesystem_synapsedldemo_dfs_core_windows_net') 
+	CREATE EXTERNAL DATA SOURCE [synapsefilesystem_synapsedldemo_dfs_core_windows_net] 
+	WITH (
+		LOCATION ='abfss://synapsefilesystem@synapsedldemo.dfs.core.windows.net'  
+	)
 GO
 
--- 3. Create external table
-CREATE EXTERNAL TABLE [dbo].[NYC_Payroll_Summary](
-    [FiscalYear] [int] NULL,
-    [AgencyName] [varchar](50) NULL,
-    [TotalPaid] [float] NULL
-)
-WITH (
-    LOCATION = '/',  -- Folder path in your container
-    DATA_SOURCE = [payroll_source],       -- Your data source name
-    FILE_FORMAT = [SynapseDelimitedTextFormat]
-)
+
+
+
+CREATE EXTERNAL TABLE [dbo].[NYC_Payroll_Summary] (
+	[FiscalYear] [int] NULL,
+	[AgencyName] [varchar](50) NULL,
+	[TotalPaid] [float] NULL
+
+	)
+	WITH (
+	LOCATION = '/',
+	DATA_SOURCE = [synapsefilesystem_synapsedldemo_dfs_core_windows_net],
+	FILE_FORMAT = [SynapseDelimitedTextFormat]
+	)
 GO
-SELECT top 10 * from  [dbo].[NYC_Payroll_Summary]
+
+
+
+SELECT TOP 100 * FROM [dbo].[NYC_Payroll_Summary]
+GO
