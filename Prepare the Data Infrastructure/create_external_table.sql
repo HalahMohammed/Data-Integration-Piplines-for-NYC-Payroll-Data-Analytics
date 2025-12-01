@@ -29,7 +29,7 @@ CREATE EXTERNAL TABLE [dbo].[NYC_Payroll_Summary](
     [TotalPaid] [float] NULL
 )
 WITH (
-    LOCATION = 'dirstaging/**',  -- Folder path in your container
+    LOCATION = '/',  -- Folder path in your container
     DATA_SOURCE = [payroll_source],       -- Your data source name
     FILE_FORMAT = [SynapseDelimitedTextFormat]
 )
