@@ -1,0 +1,16 @@
+{
+    "name": "agency_target",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "sql_ls",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": [],
+        "typeProperties": {
+            "schema": "dbo",
+            "table": "NYC_Payroll_AGENCY_MD"
+        }
+    }
+}
