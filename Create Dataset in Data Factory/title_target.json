@@ -1,0 +1,25 @@
+{
+    "name": "title_target",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "sql_ls",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": [
+            {
+                "name": "TitleCode",
+                "type": "varchar"
+            },
+            {
+                "name": "TitleDescription",
+                "type": "varchar"
+            }
+        ],
+        "typeProperties": {
+            "schema": "dbo",
+            "table": "NYC_Payroll_TITLE_MD"
+        }
+    }
+}
