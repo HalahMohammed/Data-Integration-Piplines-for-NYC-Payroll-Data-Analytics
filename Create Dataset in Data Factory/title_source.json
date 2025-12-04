@@ -1,0 +1,33 @@
+{
+    "name": "title_source",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "datalake_ls",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": "TitleMaster.csv",
+                "folderPath": "dirpayrollfiles",
+                "fileSystem": "container22"
+            },
+            "columnDelimiter": ",",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": [
+            {
+                "name": "TitleCode",
+                "type": "String"
+            },
+            {
+                "name": "TitleDescription",
+                "type": "String"
+            }
+        ]
+    }
+}
